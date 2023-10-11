@@ -1,1 +1,67 @@
 /* You can add global styles to this file, and also import other style files */
+
+.navbar {
+    background-color: #007bff; /* bg-primary */
+}
+
+
+
+/* boton */
+
+.btn-secondary {
+    background-color: #6c757d; /* Color de fondo del botón */
+    border-color: #6c757d; /* Color del borde del botón */
+    color: #fff; /* Color del texto del botón */
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268; /* Color de fondo del botón al pasar el ratón */
+    border-color: #545b62; /* Color del borde del botón al pasar el ratón */
+}
+
+.btn-secondary:active {
+    background-color: #4e555b; /* Color de fondo del botón al hacer clic */
+    border-color: #4e555b; /* Color del borde del botón al hacer clic */
+}
+
+
+/* Tabla*/
+
+/* Personalizar el card */
+.card {
+    border: 1px solid #ccc; /* Cambiar el color del borde del card */
+    border-radius: 8px; /* Añadir bordes redondeados al card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añadir sombra al card */
+}
+
+/* Personalizar el header del card */
+.card-header {
+    background-color: #dc3545; /* Cambiar el color de fondo del header del card */
+    color: #fff; /* Cambiar el color del texto del header del card */
+    text-align: center; /* Alinear el texto al centro */
+    font-size: 18px; /* Cambiar el tamaño del texto del header del card */
+}
+
+/* Personalizar la tabla */
+.table {
+    width: 100%; /* Asegurarse de que la tabla ocupe todo el ancho disponible */
+    border-collapse: collapse; /* Colapsar los bordes de la tabla */
+}
+
+/* Personalizar los bordes de la tabla */
+.table-bordered,
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dee2e6; /* Cambiar el color de los bordes de la tabla */
+}
+
+/* Personalizar las celdas rayadas de la tabla */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05); /* Cambiar el color de fondo de las filas impares */
+}
+
+/* Personalizar el thead de la tabla */
+.table-success th {
+    background-color: #d4edda; /* Cambiar el color de fondo del thead */
+    color: #495057; /* Cambiar el color del texto del thead */
+}

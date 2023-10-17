@@ -1,68 +1,122 @@
+
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Home</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+  <!-- Modal form -->
+  <div class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" id="modalForm">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Nueva categoría</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarColor02">
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                <a class="nav-link active" href="#"> Estudiante
-                  <span class="visually-hidden"></span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Academico  </a>
-              </li>
-           
-
-              <li class="nav-item">
-                <a class="nav-link" href="#">Aspirantes</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="#">Directorio</a>
-              </li>
- 
-            </ul>
-            <form class="d-flex">
-              <input class="form-control me-sm-2" type="search" placeholder="Search">
-              <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
-            </form>
-          </div>
         </div>
-    </nav>
-
-     <!-- Tabla -->
-    <div class="container mt-5 mx-auto" style="max-width: 1280px;">
-        <div class="card">
-            <div class="card-header bg-danger text-white text-center">
-                Listado de Categorias
+        <div class="modal-body">
+          <!-- Formulario -->
+          <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+            <!-- Categoría -->
+            <div class="form-group">
+              <label for="category">Categoría <span class="color-red">*</span></label>
+              <input type="text" class="form-control" formControlName="category" id="category" placeholder="Nombre de la categoría..." 
+                [ngClass]="{'is-invalid': categoryForm.controls['category'].errors && submitted}">
+              <div *ngIf="categoryForm.controls['category'].errors && submitted">
+                <small class="color-red">Favor de ingresar una categoría válida</small>
+              </div>
             </div>
-            <div class="card-body">
-                <table class="table table-bordered table-striped">
-                    <thead class="table-success">
-                      <tr>
-                          <th>category_id</th>
-                          <th>code</th>
-                          <th>category</th>
-                          <th>status</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr *ngFor="let category of categories">
-                          <td>{{ category.category_id }}</td>
-                          <td>{{ category.code }}</td>
-                          <td>{{ category.category }}</td>
-                          <td>{{ category.status }}</td>
-                      </tr>
-                  </tbody>
-                </table>
+            <!-- Código -->
+            <div class="form-group">
+              <label for="code">Código <span class="color-red">*</span></label>
+              <input type="text" class="form-control" formControlName="code" id="code" placeholder="Código de la categoría..." 
+                [ngClass]="{'is-invalid': categoryForm.controls['code'].errors && submitted}">
+              <div *ngIf="categoryForm.controls['code'].errors && submitted">
+                <small class="color-red">Favor de ingresar un código válido</small>
+              </div>
             </div>
+            <!-- Botones -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Guardar categoría</button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
+  
+          
+  <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor02">
+              <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#"> Estudiante
+                    <span class="visually-hidden"></span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Academico  </a>
+                </li>
+             
+  
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Aspirantes</a>
+                </li>
+  
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Directorio</a>
+                </li>
+   
+              </ul>
+              <form class="d-flex">
+                <input class="form-control me-sm-2" type="search" placeholder="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
+              </form>
+            </div>
+          </div>
+      </nav>
+  
+  
+  <!-- Botón para abrir el modal -->
+  <div class="text-center mt-5">
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalForm">
+      Nueva categoría
+    </button>
+  </div>
+  
+  
+    
+  <!--Tabla-->
+      <div class="container  mt-5 mx-auto" style="max-width: 1280px;">
+          <div class="card">
+              <div class="card-header bg-danger text-white text-center">
+                  Listado de Categorias
+              </div>
+              <div class="card-body">
+                  <table class="table table-bordered table-striped">
+                      <thead class="table-success">
+                        <tr>
+                            <th>category_id</th>
+                            <th>code</th>
+                            <th>category</th>
+                            <th>status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let category of categories">
+                            <td>{{ category.category_id }}</td>
+                            <td>{{ category.code }}</td>
+                            <td>{{ category.category }}</td>
+                            <td>{{ category.status }}</td>
+                        </tr>
+                    </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
 
-</body>
+  </body>

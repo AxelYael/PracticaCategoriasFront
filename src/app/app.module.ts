@@ -4,6 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductModule } from './modules/product/product.module';
 import { CategoryComponent } from './modules/components/category.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -13,7 +15,8 @@ import { CategoryComponent } from './modules/components/category.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ProductModule
+    ProductModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

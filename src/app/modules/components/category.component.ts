@@ -51,29 +51,47 @@ categories: Category[] = [];
   }
 
     // Crear una nueva categoría
-    onSubmitCreate(): void {
-      let newCategory = new Category(
-
-        this.categories.length > 0 ? this.categories[this.categories.length - 1].category_id + 1 : 1,
-        this.categoryForm.controls['category'].value!, 
-        this.categoryForm.controls['code'].value!, 1
-      );
+    onSubmitCreate(){
+      this.submitted = true;
   
-      this.categories.push(newCategory);
-      alert('Categoría creada exitosamente!');
+      if(this.categoryForm.invalid) return;
+  
+      this.submitted = false;
+  
+      let category = new Category(0,this.categoryForm.controls['code'].value!, this.categoryForm.controls['category'].value!, 1);
+      console.log(this.categoryForm.value);
+      this.categories.push(category);
+      
+      $("#modalForm").modal("hide");
+  
+      //cambiar a ingles
+      alert("Categoria guardada exitosamente!");
+  
     }
   
     // Actualizar una categoría existente
     onSubmitUpdate(): void {
-      for (let category of this.categories) {
-        if (category.category_id == this.categoryUpdated) {
-          category.category = this.categoryForm.controls['category'].value!; 
-          category.code = this.categoryForm.controls['code'].value!; 
-          break;
-        }
+     
+    this.submitted = true;
+
+    if(this.categoryForm.invalid) return;
+
+    this.submitted = false;
+
+    for(let category of this.categories){
+      if(category.category_id == this.categoryUpdated){
+        category.category = this.categoryForm.controls['category'].value!;
+        category.code = this.categoryForm.controls['code'].value!;
+        break;
       }
-      alert('Categoría actualizada exitosamente!');
-      this.categoryUpdated = 0; 
+    }
+    
+    $("#modalForm").modal("hide");
+
+
+    alert("Categoría actualizada exitosamente!");
+
+    this.categoryUpdated = 0;
 
     }
 

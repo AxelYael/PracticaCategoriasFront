@@ -7,6 +7,8 @@ import { CategoryComponent } from './modules/components/category.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,

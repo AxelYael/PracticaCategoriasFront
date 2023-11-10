@@ -1,6 +1,4 @@
 
-<body>
-
   <!-- Modal form -->
   <div class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" id="modalForm">
     <div class="modal-dialog modal-lg" role="document">
@@ -34,8 +32,7 @@
             </div>
             <!-- Botones -->
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="submit" class="btn btn-primary">Guardar categoría</button>
+              <button type="submit" class="btn btn-dark">Guardar categoría</button>
             </div>
           </form>
         </div>
@@ -45,7 +42,7 @@
   
           
   <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
           <div class="container-fluid">
             <a class="navbar-brand" href="#">Home</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,43 +77,73 @@
           </div>
       </nav>
   
-  
-  <!-- Botón para abrir el modal -->
-  <div class="text-center mt-5">
-    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalForm">
-      Nueva categoría
-    </button>
+  <!-- Boton Nueva Categoria -->
+  <div class="card">
+    <div class="card-header">
+              <button type="button" class="btn btn-primary btn-new" (click)="showModalForm()">
+                <i class="ph ph-plus-circle"></i> Nueva categoria
+            </button>
+    </div>
   </div>
-  
-  
-    
-  <!--Tabla-->
-      <div class="container  mt-5 mx-auto" style="max-width: 1280px;">
-          <div class="card">
-              <div class="card-header bg-danger text-white text-center">
-                  Listado de Categorias
-              </div>
-              <div class="card-body">
-                  <table class="table table-bordered table-striped">
-                      <thead class="table-success">
-                        <tr>
-                            <th>category_id</th>
-                            <th>code</th>
-                            <th>category</th>
-                            <th>status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let category of categories">
-                            <td>{{ category.category_id }}</td>
-                            <td>{{ category.code }}</td>
-                            <td>{{ category.category }}</td>
-                            <td>{{ category.status }}</td>
-                        </tr>
-                    </tbody>
-                  </table>
-              </div>
-          </div>
-      </div>
 
-  </body>
+
+
+  <!-- Tabla -->
+
+  <div class="card-body">
+    <div class="container">
+      <h5 class="table-title">Lista de Categorías</h5>
+    </div>
+      <table class="table table-hover table-bordered ">
+          <thead>
+              <tr class="table-primary">
+                  <th>Category_id</th>
+                  <th>Code</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>More</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let category of categories; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{category.code}} </td>
+                  <td>{{category.category}}</td>
+                  <td>
+                      <div class="td-status"
+                          [ngClass]="{'td-status-enable': category.status == 1, 'td-status-disable': category.status == 0}" >
+                          {{ category.status == 0 ? "deactived" : "activated" }}
+                      </div>
+                  </td>
+                  <!-- dropddown-->
+                  <td>
+                    <div class="dropdown">                          
+                      <button class="dropdown-button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">              
+                        <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
+                      </button>
+                      
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" (click)="updateCategory(category)">
+                          <i class="ph ph-note-pencil icon-text-ul"></i>Edite 
+                        </a>
+                        <a *ngIf="category.status == 0" class="dropdown-item enable-item"
+                          (click)="enableCategory(category.category_id)">
+                          <i class="ph ph-check-circle icon-text-ul"></i> Active
+                        </a>
+                        <a *ngIf="category.status == 1" class="dropdown-item disable-item"
+                          (click)="disableCategory(category.category_id)">
+                          <i class="ph ph-x-circle icon-text-ul"></i> Deactive
+                        </a>
+                      </div>
+                    </div>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+
+
+      
+
+
+          
